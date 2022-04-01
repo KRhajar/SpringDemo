@@ -145,6 +145,25 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
 
 
     }
+
+    @Override
+    public void location() throws InterruptedException {
+        System.out.println(" to loan livre , entrer LL");
+        System.out.println(" to loan  chaise,enter LC");
+        //input user
+        Scanner scanner = new Scanner(System.in);
+        String next = scanner.next();
+        if ("LL".equals(next)) {
+            System.out.println("entrer id");
+            int id = Integer.parseInt(scanner.next());
+            materialDaoImp.louee(id);
+        } else if ("LC".equals(next)) {
+            System.out.println("entrer id");
+            int id = Integer.parseInt(scanner.next());
+            materialDaoImp.louee(id);
+
+        }
+    }
 }
 
 

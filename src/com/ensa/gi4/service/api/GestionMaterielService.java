@@ -12,9 +12,8 @@ public interface GestionMaterielService {
 //   public  void upDate();
    public void search();
 
-    void upDate();
-//
-//    public void deleteMaterial(int theId);
+     public void upDate();
+    public void location() throws InterruptedException;
 
 
 }

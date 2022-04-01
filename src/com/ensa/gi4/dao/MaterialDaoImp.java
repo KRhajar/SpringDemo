@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class MaterialDaoImp implements MaterialDAO {
     // need to inject customer dao, we chould add in file.xml file
@@ -27,8 +28,7 @@ public class MaterialDaoImp implements MaterialDAO {
     public void getMaterials() {
         int livre = 0;
         int chaise = 0;
-        for (Materiel materiel : dbclass.material)
-    {
+        for (Materiel materiel : dbclass.material) {
 
             if (materiel.getClass().getName().equals("com.ensa.gi4.modele.Livre")) {
                 System.out.println(materiel.getClass().getName());
@@ -47,58 +47,55 @@ public class MaterialDaoImp implements MaterialDAO {
     public void addMaterial(Materiel theMateriel) {
 
         dbclass.material.add(theMateriel);
-        System.out.println("the new material adding with id equals " +theMateriel.getId() + "and the name is " + theMateriel.getName() +"and the price is " + theMateriel.getPrice() +" DH");
+        System.out.println("the new material adding with id equals " + theMateriel.getId() + "and the name is " + theMateriel.getName() + "and the price is " + theMateriel.getPrice() + " DH");
     }
 
-  @Override
-    public void upDate( int id) {
-      if(!dbclass.material.isEmpty()) {
-          for (Materiel materiels : dbclass.material) {
-              if (materiels.getId() == id) {
+    @Override
+    public void upDate(int id) {
+        if (!dbclass.material.isEmpty()) {
+            for (Materiel materiels : dbclass.material) {
+                if (materiels.getId() == id) {
 
-                  System.out.println("enter  the new name ");
-                  Scanner scanner = new Scanner(System.in);
-                  String name = scanner.next();
-                  materiels.setName(name);
-                  System.out.println("enter  the new price ");
-                  String price =  scanner.next();
-                  materiels.setPrice(price);
-                  System.out.println("the Materiel with id " + id + " modifiy with seccess");
-                  System.out.println( " the new name is " + materiels.getName() + " and the new price is " + materiels.getPrice() +" DH");
+                    System.out.println("enter  the new name ");
+                    Scanner scanner = new Scanner(System.in);
+                    String name = scanner.next();
+                    materiels.setName(name);
+                    System.out.println("enter  the new price ");
+                    String price = scanner.next();
+                    materiels.setPrice(price);
+                    System.out.println("the Materiel with id " + id + " modifiy with seccess");
+                    System.out.println(" the new name is " + materiels.getName() + " and the new price is " + materiels.getPrice() + " DH");
 
-                  break;
-              } else {
-                  System.out.println("materiel with id " + id + "doesn't exist");
-                  break;
+                    break;
+                } else {
+                    System.out.println("materiel with id " + id + "doesn't exist");
+                    break;
 
-              }
-          }
+                }
+            }
 
-      }  else{
-              System.out.println("the list is empty ");
+        } else {
+            System.out.println("the list is empty ");
 
-          }
-      }
-
-
+        }
+    }
 
 
     @Override
     public void deletMaterial(int theid) {
-        if(!dbclass.material.isEmpty()){
-            for( Materiel materiel : dbclass.material){
-                if(materiel.getId()==theid){
+        if (!dbclass.material.isEmpty()) {
+            for (Materiel materiel : dbclass.material) {
+                if (materiel.getId() == theid) {
                     dbclass.material.remove(materiel);
-                    System.out.println("Materiel with id " + theid +" deleted");
+                    System.out.println("Materiel with id " + theid + " deleted");
 
                     break;
-                }
-                else{
-                    System.out.println("materiel with id " + theid+ "doesn't exist");
+                } else {
+                    System.out.println("materiel with id " + theid + "doesn't exist");
                     break;
                 }
-            }}
-        else{
+            }
+        } else {
             System.out.println("the list is empty ");
 
         }
@@ -106,26 +103,49 @@ public class MaterialDaoImp implements MaterialDAO {
 
     @Override
     public void search(int theId) {
-        int search =0;
+        int search = 0;
 
-        for( Materiel materiel : dbclass.material){
-            if(materiel.getId()==theId){
+        for (Materiel materiel : dbclass.material) {
+            if (materiel.getId() == theId) {
                 search = 1;
-                System.out.println("Materiel with id " +    theId +" exists");
+                System.out.println("Materiel with id " + theId + " exists");
                 System.out.println("the name of materiel is " + materiel.getName() + "and the price is"
-                        +"the price is "+ materiel.getPrice());
+                        + "the price is " + materiel.getPrice());
                 break;
             }
         }
-        if(search ==0){
-            System.out.println("Materiel with id " + theId +" does'nt exist");
+        if (search == 0) {
+            System.out.println("Materiel with id " + theId + " does'nt exist");
         }
 
 
     }
 
+    @Override
+    public void louee(int theId) throws InterruptedException {
+        Materiel meterielAlloue;
+        for (Materiel materiels : dbclass.material) {
+            if (materiels.getId() == theId) {
+                meterielAlloue = materiels;
+                dbclass.material.remove(materiels);
+                System.out.println("how mutch the time want to allocate the materiel ");
+                Scanner scanner = new Scanner(System.in);
+                String time = scanner.next();
+                TimeUnit.SECONDS.sleep(Long.parseLong(time));
+                System.out.println("the Materiel with id " + theId + " allocate with seccess");
+                System.out.println(" the  name is " + materiels.getName() + " and the  price is " + materiels.getPrice() +"DH pendand " + time );
+                dbclass.material.add(meterielAlloue);
+                System.out.println("the Materiel with id " + theId + " is not Allocated");
 
-}
+                break;
+            }
+
+            }
+
+
+        }
+    }
+
 
 
 

@@ -12,8 +12,8 @@
     <bean id="dbclass" class="com.ensa.gi4.datatabase.Dbclass"/>
     <bean id="dao" class="com.ensa.gi4.dao.MaterialDaoImp">
         <constructor-arg ref="dbclass"></constructor-arg>
-    </bean>
 
+    </bean>
 
 
 </beans>

@@ -10,5 +10,6 @@ public interface MaterialDAO {
  public void upDate( int id );
     public void deletMaterial(int theid );
     public void search( int theId);
+    public void louee( int theId) throws InterruptedException;
 
 }

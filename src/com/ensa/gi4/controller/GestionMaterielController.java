@@ -14,7 +14,7 @@ public class GestionMaterielController {
         gestionMaterielService.listerMateriel();
     }
 
-    public void afficherMenu() {
+    public void afficherMenu() throws InterruptedException {
         //guide for user(menu)
         System.out.println("1- pour lister le matériel, entrer 1");
         System.out.println("2- pour ajouter un nouveau matériel, entrer 2");
@@ -22,6 +22,7 @@ public class GestionMaterielController {
         System.out.println("4- pour  supprimer une matériel , entrer 4 ");
         System.out.println("5- Pour chercher des informations surune matériel , entrer 5 ");
         System.out.println("0- pour sortir de l'application, entrer 0");
+        System.out.println("0- pour louee une Materiel, entrer 6");
         Scanner scanner = new Scanner(System.in);
         String next = scanner.next();
         if ("0".equals(next)) {
@@ -37,6 +38,8 @@ gestionMaterielService.upDate();
             gestionMaterielService.deletMaterial();
         } else if ("5".equals(next)) {
             gestionMaterielService.search();
+        } else if ("6".equals(next)) {
+            gestionMaterielService.location();
         }else {
             System.out.println("choix invalide");
         }

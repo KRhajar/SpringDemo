@@ -12,7 +12,7 @@ public class AppGestionMateriel {
         APPLICATION_CONTEXT = new ClassPathXmlApplicationContext("/beans/app-context.xml");
     }
 
-    public static  void main(String[] args) {
+    public static  void main(String[] args) throws InterruptedException {
         final GestionMaterielController gestionMaterielController = APPLICATION_CONTEXT.getBean(GestionMaterielController.class);
         while (true) { // pour que l'appliation tourne jusqu'à la demande de l'utilisateur de l'arrêter
             gestionMaterielController.afficherMenu();
