@@ -136,7 +136,7 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
             System.out.println("entrer id");
             int id = Integer.parseInt(scanner.next());
             materialDaoImp.upDate(id);
-            
+
         }
 
 
