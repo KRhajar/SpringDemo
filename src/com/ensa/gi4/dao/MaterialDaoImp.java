@@ -131,13 +131,17 @@ public class MaterialDaoImp implements MaterialDAO {
                 System.out.println("how mutch the time want to allocate the materiel ");
                 Scanner scanner = new Scanner(System.in);
                 String time = scanner.next();
-                TimeUnit.SECONDS.sleep(Long.parseLong(time));
+                TimeUnit.SECONDS.sleep(
+                        Long.parseLong(time));
                 System.out.println("the Materiel with id " + theId + " allocate with seccess");
                 System.out.println(" the  name is " + materiels.getName() + " and the  price is " + materiels.getPrice() +"DH pendand " + time );
                 dbclass.material.add(meterielAlloue);
-                System.out.println("the Materiel with id " + theId + " is not Allocated");
+//                System.out.println("the Materiel with id " + theId + " is not Allocated");
 
                 break;
+            }else{
+                System.out.println("the Materiel with id " + theId + " is not exist");
+
             }
 
             }
