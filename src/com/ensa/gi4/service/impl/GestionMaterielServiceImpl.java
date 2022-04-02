@@ -60,6 +60,7 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
                     livre.setName(infos[1]);
                     livre.setPrice(infos[2]);
                     materialDaoImp.addMaterial(livre);
+
                 } catch (Exception e) {
                     System.err.println("error");
                 }

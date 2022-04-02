@@ -124,37 +124,42 @@ public class MaterialDaoImp implements MaterialDAO {
     @Override
     public void louee(int theId) throws InterruptedException {
         Materiel meterielAlloue;
-        for (Materiel materiels : dbclass.material) {
-            if (materiels.getId() == theId) {
-                meterielAlloue = materiels;
-                dbclass.material.remove(materiels);
-                System.out.println("how mutch the time want to allocate the materiel ");
-                Scanner scanner = new Scanner(System.in);
-                String time = scanner.next();
-                new Thread(() -> {
-                    try {
-                        TimeUnit.SECONDS.sleep(
-                                Long.parseLong(time));
-                        System.out.println("the Materiel with id " + theId + " allocate with seccess");
-                        System.out.println(" the  name is " + materiels.getName() + " and the  price is " + materiels.getPrice() + "DH pendand " + time);
-                        dbclass.material.add(meterielAlloue);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }).start();
+        if (!dbclass.material.isEmpty()) {
+            for (Materiel materiels : dbclass.material) {
+                if (materiels.getId() == theId) {
+                    meterielAlloue = materiels;
+                    dbclass.material.remove(materiels);
+                    System.out.println("how mutch the time want to allocate the materiel ");
+                    Scanner scanner = new Scanner(System.in);
+                    String time = scanner.next();
+                    new Thread(() -> {
+                        try {
+                            TimeUnit.SECONDS.sleep(
+                                    Long.parseLong(time));
+                            System.out.println("the Materiel with id " + theId + " allocate with seccess");
+                            System.out.println(" the  name is " + materiels.getName() + " and the  price is " + materiels.getPrice() + "DH pendand " + time);
+                            dbclass.material.add(meterielAlloue);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }).start();
 
 
-                break;
-            }else{
-                System.out.println("the Materiel with id " + theId + " is not exist");
+                    break;
+                } else {
+                    System.out.println("the Materiel with id " + theId + " is not exist");
 
-            }
+                }
 
             }
 
 
         }
+
+        System.out.println("materiel with id " + theId + "doesn't exist");
+
     }
+}
 
 
 
