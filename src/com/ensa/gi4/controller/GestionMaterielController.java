@@ -49,6 +49,8 @@ gestionMaterielService.upDate();
     private void sortirDeLApplication() {
         System.exit(0);
     }
+      @Autowired
+    @Qualifier("service")
 
     public void setGestionMaterielService(GestionMaterielService gestionMaterielService) {
         // injection par accesseur
