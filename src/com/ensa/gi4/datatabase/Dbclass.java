@@ -6,7 +6,7 @@ import com.ensa.gi4.modele.Materiel;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class Dbclass {
     public List<Materiel> material = new ArrayList<>();
 }
