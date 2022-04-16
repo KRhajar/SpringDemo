@@ -7,12 +7,13 @@ import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.service.api.GestionMaterielService;
 
 import java.util.Scanner;
+@Component("service")
 
 public class GestionMaterielServiceImpl implements GestionMaterielService {
     // bd goes here
     // need to inject the material dao
     private MaterialDaoImp materialDaoImp;
-
+@Autowired
     public GestionMaterielServiceImpl(MaterialDaoImp materialDaoImp) {
         this.materialDaoImp = materialDaoImp;
     }
