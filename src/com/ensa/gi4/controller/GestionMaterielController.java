@@ -1,15 +1,16 @@
 package com.ensa.gi4.controller;
 
-import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.service.api.GestionMaterielService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Scanner;
 
+@Component
+
 public class GestionMaterielController {
 
     private GestionMaterielService gestionMaterielService;
-
+     @Autowired
     public void listerMateriel() {
         gestionMaterielService.listerMateriel();
     }
