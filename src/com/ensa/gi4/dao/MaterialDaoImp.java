@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+@Component
 
 public class MaterialDaoImp implements MaterialDAO {
     // need to inject customer dao, we chould add in file.xml file
     private Dbclass dbclass;
-
+@Autowired
     public MaterialDaoImp(Dbclass dbclass) {
         this.dbclass = dbclass;
     }
